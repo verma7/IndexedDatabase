@@ -1,7 +1,7 @@
 IndexedDatabase
 ===============
 
-A multi-threaded indexed database using Thrift and Java's concurrent collections.##### IndexedDatabase ######
+A multi-threaded indexed database using Thrift and Java's concurrent collections.
 
 To generate thrift files, run
 $ ant thrift
