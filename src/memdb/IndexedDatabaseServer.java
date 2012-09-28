@@ -44,16 +44,6 @@ public class IndexedDatabaseServer implements Runnable {
   @Override
   public void run() {
     server.serve();
-    while(!Thread.interrupted()) {
-      try {
-        Thread.sleep(1000);
-      } catch (InterruptedException e) {
-        System.out.println("Server thread interrupted");
-        stop();
-        e.printStackTrace();
-      }
-    }
-    stop();
   }
 
   /** Stops the server */
