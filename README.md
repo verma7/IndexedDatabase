@@ -14,9 +14,9 @@ API
 ---
 Three operations have to be supported:
 
-# setRecord(String key, Record record): Atomically updates the record with the given key. Records are merged on a per column basis: column value with a later timestamp wins.
-# getRecord(String key): Atomically returns the current record for the given key.
-# getQueryIndex(int id, int pageLimit, ScanContinuation cont): Returns atmost pageLimit number of records of the index id starting from the given ScanContinuation. This operation need not be atomic with respect to setRecord and getRecord.
+1. setRecord(String key, Record record): Atomically updates the record with the given key. Records are merged on a per column basis: column value with a later timestamp wins.
+2. getRecord(String key): Atomically returns the current record for the given key.
+3. getQueryIndex(int id, int pageLimit, ScanContinuation cont): Returns atmost pageLimit number of records of the index id starting from the given ScanContinuation. This operation need not be atomic with respect to setRecord and getRecord.
 
 Implementation
 --------------
