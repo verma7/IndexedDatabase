@@ -1,0 +1,55 @@
+<project name="IndexedDatabase" default="all" basedir=".">
+  <!-- Default values for concurrent test -->
+	<property name="num.threads" value="10" />
+  <property name="num.columns" value="2" />
+  <property name="num.records" value="20" />
+  
+	<property name="src" location="src"/>
+  <property name="bin" location="bin"/>
+  <property name="dist" location="dist"/>
+
+  <path id="classpath">
+		<fileset dir="deps" includes="**/*.jar"/>
+		<fileset dir="dist" includes="**/*.jar"/>
+	</path>
+
+  <target name="thrift">
+		<exec executable="thrift" dir="${src}">
+			<arg line="--gen java -out . indexing.thrift" />
+		</exec>
+	</target>
+	  
+  <target name="compile">
+    <mkdir dir="${bin}"/>
+    <mkdir dir="${dist}"/>
+    <javac srcdir="src" destdir="bin" classpathref="classpath"/>
+		<jar destfile="${dist}/indexed-database.jar" basedir="bin"/>
+  </target>
+
+  <target name="test">
+		<junit>
+	   	<formatter type="plain" usefile="false" />
+			<classpath refid="classpath" />
+			<test name="memdb.IndexedDatabaseSingleThreadedTest" />
+		</junit>
+  </target>
+  
+  <target name="ctest">
+		<java classname="memdb.IndexedDatabaseConcurrentTest">
+			<classpath refid="classpath" />
+			<!-- Number of threads -->
+			<arg value="${num.threads}" />
+			<!-- Number of columns -->
+			<arg value="${num.columns}" />
+			<!-- Number of records -->
+			<arg value="${num.records}" />
+		</java>
+  </target>
+  
+  <target name="clean">
+    <delete dir="${bin}"/>
+    <delete dir="${dist}"/>
+  </target>
+
+	<target name="all" depends="clean, thrift, compile, test, ctest" />
+</project>
