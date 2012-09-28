@@ -22,8 +22,8 @@ Implementation
 --------------
 The implementation uses concurrent Java collections.
 
-# Maintain a concurrent hashmap <key, record>.
-# Maintain a concurrent skip list set of (QueryIndexRecord, key) and a concurrent hashmap <key, QueryIndexRecord>.
+1. Maintain a concurrent hashmap <key, record>.
+2. Maintain a concurrent skip list set of (QueryIndexRecord, key) and a concurrent hashmap <key, QueryIndexRecord>.
 
 How to run
 ----------
