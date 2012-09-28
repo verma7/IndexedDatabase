@@ -13,17 +13,17 @@ IndexedDatabase also maintains indices over records that satisfy given predicate
 API
 ---
 Three operations have to be supported:
-1. setRecord(String key, Record record): Atomically updates the record with the given key. Records are merged
+# setRecord(String key, Record record): Atomically updates the record with the given key. Records are merged
 on a per column basis: column value with a later timestamp wins.
-2. getRecord(String key): Atomically returns the current record for the given key.
-3. getQueryIndex(int id, int pageLimit, ScanContinuation cont): Returns atmost pageLimit number of records of the
+# getRecord(String key): Atomically returns the current record for the given key.
+# getQueryIndex(int id, int pageLimit, ScanContinuation cont): Returns atmost pageLimit number of records of the
 index id starting from the given ScanContinuation. This operation need not be atomic with respect to setRecord and getRecord.
 
 Implementation
 --------------
 The implementation uses concurrent Java collections.
-Maintain a concurrent hashmap <key, record>.
-Maintain a concurrent skip list set of (QueryIndexRecord, key) and a concurrent hashmap <key, QueryIndexRecord>.
+# Maintain a concurrent hashmap <key, record>.
+# Maintain a concurrent skip list set of (QueryIndexRecord, key) and a concurrent hashmap <key, QueryIndexRecord>.
 
 How to run
 ----------
