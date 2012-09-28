@@ -3,8 +3,11 @@ IndexedDatabase
 
 A multi-threaded indexed database using Thrift and Java's concurrent collections.
 
+How to run
+----------
+
 To generate thrift files, run
-$ ant thrift
+`ant thrift`
 
 To build the project, run
 $ ant compile
